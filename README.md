@@ -7,14 +7,15 @@ This project was developed as part of the **Technical Test UI/UX & Frontend - Pu
 The application focuses on providing a simple, clear, and efficient ordering flow for outlet coordinators or owners, from browsing products to submitting a purchase request.
 
 ---
-
 ## 🔗 Submission Links
 
+- **Live Demo:** `https://xsanz02.github.io/web-outlet-os/`
 - **Figma Design:** `https://www.figma.com/design/KSVYCLOQUm0DgAuyAMYaaM/web-buat-tes?node-id=0-1&t=MzBD7IuE3SPHeY19-1`
 - **GitHub Repository:** `https://github.com/XsanZ02/web-outlet-os`
 
+> The Live Demo provides access to the deployed frontend application.
+>
 > Figma is provided with view access as required by the technical test.
-
 ---
 
 ## 🛠️ Technology Stack

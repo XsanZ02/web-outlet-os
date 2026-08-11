@@ -11,6 +11,7 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4">
     
         <div className="flex items-center gap-3">
+
   <div className="h-16 w-16 overflow-hidden rounded-2xl sm:h-24 sm:w-24">
     <img
       src="/assets/logo2.png"
