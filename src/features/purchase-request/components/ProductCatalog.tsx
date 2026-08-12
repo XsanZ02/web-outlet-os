@@ -20,15 +20,20 @@ export function ProductCatalog({
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-      {products.map((product) => (
-        <ProductCard
+      {products.map((product, index) => (
+        <div
           key={product.id}
-          product={product}
-          quantityInCart={cartMap.get(product.id) ?? 0}
-          onAddToCart={onAddToCart}
-          onIncrease={onIncrease}
-          onDecrease={onDecrease}
-        />
+          className="animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationFillMode: 'backwards', animationDelay: `${index * 50}ms` }}
+        >
+          <ProductCard
+            product={product}
+            quantityInCart={cartMap.get(product.id) ?? 0}
+            onAddToCart={onAddToCart}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+          />
+        </div>
       ))}
     </div>
   );

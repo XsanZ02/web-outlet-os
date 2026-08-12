@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../../../components/ui/Button';
 import { EmptyState } from '../../../components/ui/EmptyState';
 import { formatCurrency } from '../../../lib/utils';
@@ -34,8 +34,11 @@ export function CartModal({
   onContinueShopping,
   onReviewRequest,
 }: CartModalProps) {
+  const [isRendered, setIsRendered] = useState(false);
+
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      setIsRendered(true);
       return undefined;
     }
 
@@ -52,7 +55,13 @@ export function CartModal({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) {
+  const handleAnimationEnd = () => {
+    if (!isOpen) {
+      setIsRendered(false);
+    }
+  };
+
+  if (!isRendered) {
     return null;
   }
 
@@ -61,7 +70,7 @@ export function CartModal({
       <button
         type="button"
         aria-label="Close cart overlay"
-        className="absolute inset-0 bg-stone-950/55 backdrop-blur-[2px]"
+        className={`absolute inset-0 bg-stone-950/55 backdrop-blur-[2px] transition-opacity duration-300 ease-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
       />
 
@@ -69,7 +78,8 @@ export function CartModal({
         role="dialog"
         aria-modal="true"
         aria-label="Current request cart"
-        className="relative z-10 flex max-h-[calc(100vh-24px)] w-full max-w-[760px] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl sm:max-h-[86vh]"
+        onTransitionEnd={handleAnimationEnd}
+        className={`relative z-10 flex max-h-[calc(100vh-24px)] w-full max-w-[760px] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl transition-all duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none sm:max-h-[86vh] ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'}`}
       >
         <div className="flex items-center justify-between border-b border-stone-200 bg-[#1f1e1c] px-5 py-5 text-white sm:px-6">
           <div>
@@ -82,7 +92,7 @@ export function CartModal({
             type="button"
             aria-label="Close cart"
             onClick={onClose}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-stone-100 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d99a91]"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-stone-100 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d99a91]"
           >
             <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none">
               <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

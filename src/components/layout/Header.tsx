@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export function Header({ cartItemCount, onCartClick }: HeaderProps) {
   return (
-    <header className="border-b border-stone-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-stone-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4">
     
         <div className="flex items-center gap-3">
@@ -36,7 +36,7 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
             type="button"
             aria-label="Open cart"
             onClick={onCartClick}
-            className="relative grid h-10 w-10 place-items-center rounded-xl border border-stone-200 text-stone-700 transition hover:bg-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="relative grid h-10 w-10 place-items-center rounded-xl border border-stone-200 text-stone-700 transition-all duration-200 hover:bg-stone-50 active:scale-95 motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none">
               <path d="M3 5h2l2 10h12l3-7H6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -51,7 +51,7 @@ export function Header({ cartItemCount, onCartClick }: HeaderProps) {
           </button>
 
           {/* Notifications Button */}
-          <button aria-label="Notifications" className="relative grid h-10 w-10 place-items-center rounded-xl border border-stone-200 text-stone-600 transition hover:bg-stone-50">
+          <button aria-label="Notifications" className="relative grid h-10 w-10 place-items-center rounded-xl border border-stone-200 text-stone-600 transition-all duration-200 hover:bg-stone-50 active:scale-95 motion-reduce:transform-none">
             <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none">
               <path d="M18 15h5l-2-3V9a7 7 0 0 0-14 0v3l-2 3h5l2 4h6l2-4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
             </svg>

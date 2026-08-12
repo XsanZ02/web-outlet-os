@@ -32,14 +32,16 @@ export function ProductCard({
   return (
     <article
       className={[
-        'flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition duration-200',
-        isInCart ? 'border-[#d99a91] ring-1 ring-[#f0d2cd]' : 'border-stone-200 hover:border-stone-300 hover:shadow-md',
+        'group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300 ease-out motion-reduce:transition-none',
+        isInCart
+          ? 'border-[#d99a91] ring-1 ring-[#f0d2cd]'
+          : 'border-stone-200 hover:border-stone-300 hover:shadow-md hover:-translate-y-1 motion-reduce:transform-none',
       ].join(' ')}
     >
       <div className="relative h-40 overflow-hidden bg-stone-100">
-        <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+        <img src={product.image} alt={product.name} className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 motion-reduce:transform-none" />
         {isInCart ? (
-          <span className="absolute left-3 top-3 rounded-full bg-[#1f1e1c] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
+          <span className="absolute left-3 top-3 rounded-full bg-[#1f1e1c] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white transition-opacity duration-200">
             In Cart
           </span>
         ) : null}
@@ -67,22 +69,8 @@ export function ProductCard({
           </div>
         </div>
 
-        <div className="mt-5 min-h-12">
-          {isInCart ? (
-            <div className="flex items-center justify-between gap-3">
-              <span className="rounded-full bg-[#f7e4df] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#923b33]">
-                In Cart
-              </span>
-              <QuantityInput
-                value={quantityInCart}
-                min={0}
-                max={product.stock}
-                ariaLabel={`${product.name} quantity`}
-                onIncrease={() => onIncrease(product.id)}
-                onDecrease={() => onDecrease(product.id)}
-              />
-            </div>
-          ) : (
+        <div className="relative mt-5 min-h-12">
+          <div className={`transition-all duration-200 ease-out ${!isInCart ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
             <Button
               type="button"
               size="md"
@@ -90,10 +78,28 @@ export function ProductCard({
               disabled={isUnavailable}
               className="w-full"
               onClick={() => onAddToCart(product)}
+              aria-hidden={isInCart}
             >
               {isUnavailable ? 'Out of Stock' : 'Add to Cart'}
             </Button>
-          )}
+          </div>
+          <div className={`absolute inset-0 transition-all duration-200 ease-out ${isInCart ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+            {isInCart && (
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full bg-[#f7e4df] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#923b33]">
+                  In Cart
+                </span>
+                <QuantityInput
+                  value={quantityInCart}
+                  min={0}
+                  max={product.stock}
+                  ariaLabel={`${product.name} quantity`}
+                  onIncrease={() => onIncrease(product.id)}
+                  onDecrease={() => onDecrease(product.id)}
+                />
+              </div>
+            )}
+          </div>
           {isUnavailable ? (
             <p className="mt-2 text-xs font-semibold text-rose-700">This item is currently unavailable.</p>
           ) : null}

@@ -5,6 +5,7 @@ import { Header } from '../../components/layout/Header';
 import { PageContainer } from '../../components/layout/PageContainer';
 import { Button } from '../../components/ui/Button';
 import { EmptyState } from '../../components/ui/EmptyState';
+import { AnimatedView } from '../../components/ui/AnimatedView';
 import { CartModal } from './components/CartModal';
 import { ProductCatalog } from './components/ProductCatalog';
 import { ProductFilters } from './components/ProductFilters';
@@ -289,10 +290,10 @@ export function PurchaseRequestPage() {
       />
 
       <PageContainer>
-        {view === 'catalog' ? renderCatalog() : null}
-        {view === 'review' ? renderReview() : null}
-        {view === 'success' ? renderSuccess() : null}
-        {view === 'details' ? renderDetails() : null}
+        <AnimatedView show={view === 'catalog'}>{renderCatalog()}</AnimatedView>
+        <AnimatedView show={view === 'review'}>{renderReview()}</AnimatedView>
+        <AnimatedView show={view === 'success'}>{renderSuccess()}</AnimatedView>
+        <AnimatedView show={view === 'details'}>{renderDetails()}</AnimatedView>
       </PageContainer>
     </div>
   );

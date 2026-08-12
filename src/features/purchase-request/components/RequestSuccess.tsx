@@ -25,7 +25,7 @@ export function RequestSuccess({
     <section className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm lg:p-8">
       <div className="mx-auto max-w-4xl">
         <div className="rounded-2xl bg-[#1f1e1c] p-6 text-white sm:p-8">
-          <span className="grid h-14 w-14 place-items-center rounded-xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-300/30">
+          <span className="grid h-14 w-14 place-items-center rounded-xl bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-300/30 animate-pop-in motion-reduce:animate-none">
             <svg aria-hidden="true" className="h-7 w-7" viewBox="0 0 24 24" fill="none">
               <path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
